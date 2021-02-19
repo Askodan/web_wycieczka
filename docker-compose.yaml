@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  web_page:
+    image: nginx-velo_dunajec:latest
+    build: .
+    ports:
+      - "8444:443"
+    restart: always
+    volumes:
+      - ./src:/usr/share/nginx/html/
+      - ./httpscertificate:/etc/nginx/httpscertificate
+      - ./.htpasswd:/etc/nginx/.htpasswd
+  image_server:
+    image: web_wycieczka_image_server:latest
+    build: ./image_server
+    restart: always
+    volumes:
+      - ./image_server/app:/app
+      - /media/git_place/web_wycieczka_images:/velo_dunajec
+    environment:
+      - TARGET_PATH:/velo_dunajec

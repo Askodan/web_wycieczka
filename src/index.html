@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+
+<title>VeloDunajec - stronka</title>
+<link rel="shortcut icon" href="assets/VeloDunajec.ico">
+<link rel="stylesheet" href="styles/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<script type="text/javascript" src="scripts/images.js"></script>
+<script type="text/javascript" src="scripts/MooTools-Core-1.6.0.js"></script>
+<script type="text/javascript" src="scripts/MooTools-More-1.6.0.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+<body onload="GetListOfImages(); OnLoad();">
+    <h1>VeloDunajec</h1>
+
+    <p>Witajcie drodzy wycieczkowicze! Czeka was niezapomniana przygoda, której nigdy nie zapomnicie!</p>
+
+    <p> Oto lista noclegów, która nas czeka:</p>
+    <table class="content-table">
+        <tbody>
+            <thead>
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa miejsca</th>
+                    <th>Adres</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th>1</th>
+                <th>Willa Ewa</th>
+                <th>Tatrzańska 66A, 34-520 Poronin</th>
+                <th>05.09</th>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>Pokoje Gościnne Kanadyjka</th>
+                <th>Kanada 36, 34-441 Niedzica</th>
+                <th>6-7.09</th>
+            </tr>
+            <tr>
+                <th>3</th>
+                <th>Gospodarstwo Gazdówka</th>
+                <th>Moszczenica Niżna 121, 33-340</th>
+                <th>8-9.09</th>
+            </tr>
+            <tr>
+                <th>4</th>
+                <th>Agroturystyka Nad Jeziorem</th>
+                <th>Piaski-Drużków 45, 32-860</th>
+                <th>10.09</th>
+            </tr>
+            <tr>
+                <th>5</th>
+                <th>Camping Pod Jabłoniami</th>
+                <th>Piłsudskiego 28A, 33-100 Tarnów</th>
+                <th>11.09</th>
+            </tr>
+        </tbody>
+        </tbody>
+    </table>
+
+    <p>Oto mapa, która nas bedzie prowadzić:</p>
+    <iframe class='mapa' src="https://www.google.com/maps/d/u/0/embed?mid=12-uMOLWrM-HongQ-UcuyHBNQpKLj8-ja"></iframe>
+
+    <p>Oto nasze bilety pociągowe:</p>
+
+    <table class="content-table">
+        <tbody>
+            <thead>
+                <tr>
+                    <th>Lp</th>
+                    <th>Relacja</th>
+                    <th>Ludzie</th>
+                    <th>Rowery</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th>1</th>
+                <th>Warszawa - Zakopane</th>
+                <th>
+                    <p><a href="assets/eic_102567341.pdf">Magda i Czarek</a></p>
+                    <p><a href="assets/eic_102567397.pdf">Kinga i
+                            Marcin</a></p>
+                </th>
+                <th>
+                    <p><a href="assets/eic_102567342.pdf">Magda</a></p>
+                    <p><a href="assets/eic_102567343.pdf">Czarek</a></p>
+                    <p><a href="assets/eic_102567398.pdf">Kinga</a></p>
+                    <p><a href="assets/eic_102567399.pdf">Marcin</a></p>
+                </th>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>Tarnów - Warszawa</th>
+                <th>
+                    <p><a href="assets/eic_102849144.pdf">wszyscy</a></p>
+                </th>
+                <th>
+                    <p><a href="assets/eic_102849145.pdf">Magda</a></p>
+                    <p><a href="assets/eic_102849146.pdf">Czarek</a></p>
+                    <p><a href="assets/eic_102849147.pdf">Kinga</a></p>
+                    <p><a href="assets/eic_102849148.pdf">Marcin</a></p>
+                </th>
+            </tr>
+            </tr>
+        </tbody>
+        </tbody>
+    </table>
+    <p>Oto podsumowanie naszych wydatków:</p>
+    <p><a href="https://docs.google.com/spreadsheets/d/1ylcDn442ok2Tj_sXBJ3neLRsBq-hLnXv1PUYY-hp-j8/edit?usp=sharing">Link
+            do arkusza</a></p>
+    <iframe class="arkusz"
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTQIPxGfxRu2Z_C1eE8I0pjSNKZ4wtEKHLPWJSpzdb8sQ-bpwY8VCMOdCaXlQgDJjKJNV6bU-8V93qi/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+
+
+    <p>Oto zdjęcia z wycieczki! Liczba zdjęć:</p>
+    <p id="image_count">0</p>
+
+    <input id="image-file" type="file" onchange="AddImage(this)" multiple>
+
+    <button onclick="window.location.href=hostname_+'/get_zip/images'">Pobierz wszystkie
+        obrazki!</button>
+
+    <P></P>
+
+    <div style="visibility:hidden;" id="loader" class="loader"></div>
+    <div style="visibility:visible;" id="images_div" class="animate-bottom"></div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <a id="img_link" download>
+            <img class="modal-content" id="img01">
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </a>
+    </div>
+
+
+</body>
+
+</html>

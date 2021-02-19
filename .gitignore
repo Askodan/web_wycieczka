@@ -1,0 +1,4 @@
+.htpasswd
+https_certificate/
+httpscertificate/
+*.pdf
